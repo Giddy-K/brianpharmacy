@@ -7,63 +7,72 @@ class OnboardingScreen extends StatefulWidget {
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
+
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
 final controller = PageController();
 
 @override
 void dispose(){
-  super.dispose();
   controller.dispose();
-  
+  super.dispose();
 }
-
-
-
-class _OnboardingScreenState extends State<OnboardingScreen> {
-
   @override
   Widget build(BuildContext context) => Scaffold(
       body: Container(
         padding:const EdgeInsets.only(bottom: 80),
-      )
       child: PageView(
           controller: controller,
           children: [
            Container(
-           color:Colors.red,
-          child:const Center(child: Text('page 1'))
+           color:Colors.transparent,
+          child: Center(child: Image.asset("assets/images/drug.png"))
                 ), //container
          Container(
-           color:Colors.indigo,
-             child:const Center(child: Text('page 2'))
+           color:Colors.transparent,
+             child: Center(child: Image.asset("assets/images/pills.png"))
          ),
-            Container(
-             color: Colors.green,
-           child: const Center(child: Text('page 3')) 
-           ),//container  
+          //   Container(
+          //    color: Colors.green,
+          //  child: const Center(child: Text('page 3')) 
+          //  ),//container  
            ],
-        ), //pageview
+             ), 
+            ),      //pageview
       bottomSheet:Container(
-        padding:const EdgeInsets.symmetric(horizontal)
+        padding:const EdgeInsets.symmetric(horizontal:3.0 ),
         height: 80,
         child:Row(
           mainAxisAlignment:MainAxisAlignment.spaceBetween,
        children: [
          TextButton(
           child:const Text('SKIP'),
-          onPressed:(){},
+          onPressed:() =>controller.jumpToPage(2),
         ),
         Center(
           child: SmoothPageIndicator (
             controller:controller,
-            count:3,
+            count:2,
+            effect:WormEffect(
+              spacing:16,
+              dotColor: Colors.black26,
+              activeDotColor: Colors.teal.shade700
+            ),
+            onDotClicked: (index) => controller.animateToPage(
+              index,
+              duration: const Duration(milliseconds:500),
+              curve:Curves.easeIn,
+            ),
           )
         ),
         TextButton(
           child: const Text('NEXT'),
-           onPressed:(){},
+           onPressed:() => controller.nextPage(
+            duration:const Duration(milliseconds:500),
+          curve:Curves.easeInOut ),
         ),
        ],
         ),
       ),
-  ),
+  );
   }
