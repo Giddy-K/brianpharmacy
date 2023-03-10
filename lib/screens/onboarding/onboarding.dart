@@ -69,7 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: isLastPage
           ? Container(
-              color: Color.fromARGB(0, 255, 255, 255),
+              color: const Color.fromARGB(0, 255, 255, 255),
               padding: const EdgeInsets.only(
                 bottom: 2,
                 right: 4,
@@ -80,20 +80,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
-                    backgroundColor: (Color.fromARGB(255, 151, 26, 22)),
+                    backgroundColor: (const Color.fromARGB(255, 151, 26, 22)),
                     minimumSize: const Size.fromHeight(50)),
                 child: const Text(
                   'Get Started',
                   style: TextStyle(fontSize: 24),
                 ),
                 onPressed: () async {
-                  //navigate directly to auth screen
+                  // navigate directly to auth screen
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setBool('testpage', true);
 
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => HomePage(),
+                      builder: (context) => const HomePage(),
                     ),
                   );
                 },
