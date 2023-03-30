@@ -1,29 +1,30 @@
-import 'package:brianpharmacy/components/nav_bar.dart';
-import 'package:brianpharmacy/constraints.dart';
-import 'package:brianpharmacy/screens/dashboard/components/body.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: const Body(),
-      bottomNavigationBar: const MyNavBar(),
-    );
-  }
+  State<HomePage> createState() => _HomePageState();
+}
 
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: kPrimaryColor,
-      elevation: 0,
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          Icons.more_vert_rounded,
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+
+            },
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+            ),
+          ),
+          title: const Text("Dashboard"),
         ),
+        body: const Center(child: Text("This is the home screen")),
+      
       ),
     );
   }
