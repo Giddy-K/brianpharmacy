@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "244351073645",
+    "project_id": "pharmacy-c26cf",
+    "storage_bucket": "pharmacy-c26cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244351073645:android:dcdba67cc6c46cea05ae64",
+        "android_client_info": {
+          "package_name": "com.example.brianpharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244351073645-j27hpa1ova25q77bp3putjho7usmjg9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1r2jvfp7smWpE2GLTvN9HJymSR2lyp3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244351073645-j27hpa1ova25q77bp3putjho7usmjg9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
