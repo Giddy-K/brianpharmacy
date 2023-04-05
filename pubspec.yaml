@@ -40,6 +40,10 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   shared_preferences: ^2.0.18
   flutter_svg: ^0.17.4
+  firebase_auth: ^4.4.0
+  gestures: ^1.0.0
+  auth_email: ^0.1.0+3
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
