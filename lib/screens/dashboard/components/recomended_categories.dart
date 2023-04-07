@@ -1,4 +1,5 @@
 import 'package:brianpharmacy/constraints.dart';
+import 'package:brianpharmacy/screens/dashboard/components/geolocation/geolocation.dart';
 import 'package:flutter/material.dart';
 
 class RecomendedCategories extends StatelessWidget {
@@ -15,32 +16,44 @@ class RecomendedCategories extends StatelessWidget {
           RecomendedDrugs(
             image: "assets/images/pills2.png",
             title: "Pills",
-            press: () {},
+            press: () {
+             const geolocationpage();
+            },
           ),
           RecomendedDrugs(
             image: "assets/images/drops.png",
             title: "Drops",
-            press: () {},
+            press: () {
+             const geolocationpage();
+            },
           ),
           RecomendedDrugs(
             image: "assets/images/inhalers.jpg",
             title: "Inhalers",
-            press: () {},
+           press: () {
+             const geolocationpage();
+            },
           ),
           RecomendedDrugs(
             image: "assets/images/liquid.png",
             title: "Liquid",
-            press: () {},
+            press: () {
+             const geolocationpage();
+            },
           ),
           RecomendedDrugs(
             image: "assets/images/injection.jpg",
             title: "Injection",
-            press: () {},
+            press: () {
+             const geolocationpage();
+            },
           ),
           RecomendedDrugs(
             image: "assets/images/tropical.png",
             title: "Tropical",
-            press: () {},
+            press: () {
+             const geolocationpage();
+            },
           ),
         ],
       ),

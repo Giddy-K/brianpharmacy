@@ -44,6 +44,8 @@ dependencies:
   gestures: ^1.0.0
   auth_email: ^0.1.0+3
   email_validator: ^2.1.17
+  geolocator: ^9.0.2
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:
