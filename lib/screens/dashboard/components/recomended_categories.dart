@@ -1,5 +1,8 @@
 import 'package:brianpharmacy/constraints.dart';
+import 'package:brianpharmacy/screens/dashboard/components/druglist.dart';
 import 'package:brianpharmacy/screens/dashboard/components/geolocation/geolocation.dart';
+import 'package:brianpharmacy/screens/dashboard/components/geolocation/googleMaps.dart';
+import 'package:brianpharmacy/screens/dashboard/components/search.dart';
 import 'package:flutter/material.dart';
 
 class RecomendedCategories extends StatelessWidget {
@@ -13,48 +16,61 @@ class RecomendedCategories extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          RecomendedDrugs(
-            image: "assets/images/pills2.png",
-            title: "Pills",
-            press: () {
-             const geolocationpage();
-            },
-          ),
-          RecomendedDrugs(
-            image: "assets/images/drops.png",
-            title: "Drops",
-            press: () {
-             const geolocationpage();
-            },
-          ),
-          RecomendedDrugs(
-            image: "assets/images/inhalers.jpg",
-            title: "Inhalers",
-           press: () {
-             const geolocationpage();
-            },
-          ),
-          RecomendedDrugs(
-            image: "assets/images/liquid.png",
-            title: "Liquid",
-            press: () {
-             const geolocationpage();
-            },
-          ),
-          RecomendedDrugs(
-            image: "assets/images/injection.jpg",
-            title: "Injection",
-            press: () {
-             const geolocationpage();
-            },
-          ),
-          RecomendedDrugs(
-            image: "assets/images/tropical.png",
-            title: "Tropical",
-            press: () {
-             const geolocationpage();
-            },
-          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const GoogleMaps()));
+              },
+              child: const Text("Location")),
+              // ElevatedButton(
+              // onPressed: () {
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (BuildContext context) => SearchPage(),
+              //       ));
+              // },
+              // child: const Text("Search")),
+          // RecomendedDrugs(
+          //     image: "assets/images/pills2.png", title: "Pills", press: () {}),
+          // RecomendedDrugs(
+          //   image: "assets/images/drops.png",
+          //   title: "Drops",
+          //   press: () {
+          //     const geolocationpage();
+          //   },
+          // ),
+          // RecomendedDrugs(
+          //   image: "assets/images/inhalers.jpg",
+          //   title: "Inhalers",
+          //   press: () {
+          //     const geolocationpage();
+          //   },
+          // ),
+          // RecomendedDrugs(
+          //   image: "assets/images/liquid.png",
+          //   title: "Liquid",
+          //   press: () {
+          //     const geolocationpage();
+          //   },
+          // ),
+          // RecomendedDrugs(
+          //   image: "assets/images/injection.jpg",
+          //   title: "Injection",
+          //   press: () {
+          //     const geolocationpage();
+          //   },
+          // ),
+          // RecomendedDrugs(
+          //   image: "assets/images/tropical.png",
+          //   title: "Tropical",
+          //   press: () {
+          //     const geolocationpage();
+          //   },
+          // ),
         ],
       ),
     );

@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // ignore: camel_case_types
 class geolocationpage extends StatefulWidget {
-  const geolocationpage({super.key});
+  final Map<String, dynamic> data;
+  const geolocationpage({super.key, required this.data});
 
   @override
   State<geolocationpage> createState() => _geolocationpageState();
@@ -12,7 +16,7 @@ class geolocationpage extends StatefulWidget {
 
 // ignore: camel_case_types
 class _geolocationpageState extends State<geolocationpage> {
-  String locationMessage = 'current location of the pharmacist';
+  String locationMessage = 'current location';
   late String lat;
   late String long;
 
@@ -62,24 +66,54 @@ class _geolocationpageState extends State<geolocationpage> {
         : throw 'could not  launch $googleURL';
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('flutter pharmacist location'),
+          title: const Text('Location'),
           centerTitle: true,
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: [
+              ListTile(
+                isThreeLine: true,
+                leading: Text(widget.data['profession']),
+                title: Text(widget.data['name']),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 8),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: 'Longitude ',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(text: widget.data['location'].first),
+                          const TextSpan(
+                            text: 'Latitude ',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(text: widget.data['location'].last),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Text(locationMessage, textAlign: TextAlign.center),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   _getCurrentLocation().then((value) {
-                    lat = '${value.latitude}';
-                    long = '${value.longitude}';
+                    // lat = '${value.latitude}';
+                    // long = '${value.longitude}';
+                    lat = widget.data['location'].last;
+                    long = widget.data['location'].first;
                     setState(() {
                       locationMessage = 'Latitude: $lat, Longitude: $long';
                     });
