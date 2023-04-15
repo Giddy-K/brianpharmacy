@@ -1,8 +1,6 @@
 import 'package:brianpharmacy/constraints.dart';
-import 'package:brianpharmacy/screens/dashboard/components/druglist.dart';
-import 'package:brianpharmacy/screens/dashboard/components/geolocation/geolocation.dart';
+import 'package:brianpharmacy/screens/admin/adminPages/geo_location.dart';
 import 'package:brianpharmacy/screens/dashboard/components/geolocation/googleMaps.dart';
-import 'package:brianpharmacy/screens/dashboard/components/search.dart';
 import 'package:flutter/material.dart';
 
 class RecomendedCategories extends StatelessWidget {
@@ -21,19 +19,18 @@ class RecomendedCategories extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const GoogleMaps()));
+                        builder: (BuildContext context) => const GoogleMaps()));
               },
               child: const Text("Location")),
-              // ElevatedButton(
-              // onPressed: () {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (BuildContext context) => SearchPage(),
-              //       ));
-              // },
-              // child: const Text("Search")),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => MapView(),
+                    ));
+              },
+              child: const Text("Admin Map view")),
           // RecomendedDrugs(
           //     image: "assets/images/pills2.png", title: "Pills", press: () {}),
           // RecomendedDrugs(
