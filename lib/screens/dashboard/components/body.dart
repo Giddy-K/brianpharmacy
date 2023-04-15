@@ -1,5 +1,6 @@
 import 'package:brianpharmacy/constraints.dart';
 import 'package:brianpharmacy/screens/dashboard/components/doctors_list.dart';
+import 'package:brianpharmacy/screens/dashboard/components/druglist.dart';
 import 'package:brianpharmacy/screens/dashboard/components/header_with_search_bar.dart';
 import 'package:brianpharmacy/screens/dashboard/components/recomended_categories.dart';
 import 'package:brianpharmacy/screens/dashboard/components/title_with_more_btn.dart';
@@ -17,15 +18,20 @@ class Body extends StatelessWidget {
       child: Column(
         children: <Widget>[
           HeaderWithSearchBox(size: size),
-          TitleWithBtn(
-            title: "Categories",
-            press: () {},
-          ),
+          // TitleWithBtn(
+          //   title: "Categories",
+          //   press: () {},
+          // ),
           const RecomendedCategories(),
           TitleWithBtn(
-            title: "Doctors",
-            press: () {},
-          ),
+              title: "Doctors",
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const DrugList(),
+                    ));
+              }),
           const DoctorsList(),
           const SizedBox(
             height: kDefaultPadding,

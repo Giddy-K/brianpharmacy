@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "244351073645",
-    "project_id": "pharmacy-c26cf",
-    "storage_bucket": "pharmacy-c26cf.appspot.com"
+    "project_number": "606610292737",
+    "project_id": "pharmacy-app-355dd",
+    "storage_bucket": "pharmacy-app-355dd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:244351073645:android:dcdba67cc6c46cea05ae64",
+        "mobilesdk_app_id": "1:606610292737:android:5217c049d4ddefe25b8000",
         "android_client_info": {
           "package_name": "com.example.brianpharmacy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "244351073645-j27hpa1ova25q77bp3putjho7usmjg9b.apps.googleusercontent.com",
+          "client_id": "606610292737-5mipfvnhmv39foh4qc5u727stue7ecs1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC1r2jvfp7smWpE2GLTvN9HJymSR2lyp3w"
+          "current_key": "AIzaSyB3Y5H5WuVj_Dn0tUjuONd7S_aSJOJxQTU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "244351073645-j27hpa1ova25q77bp3putjho7usmjg9b.apps.googleusercontent.com",
+              "client_id": "606610292737-5mipfvnhmv39foh4qc5u727stue7ecs1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
