@@ -45,11 +45,11 @@ class DoctorsList extends StatelessWidget {
           TextSpan(
             children: [
               const TextSpan(
-                  text: 'Longitude ',
+                  text: 'Latitude: ',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: user.location.first),
               const TextSpan(
-                  text: 'Latitude ',
+                  text: 'Longitude: ',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: user.location.last),
             ],

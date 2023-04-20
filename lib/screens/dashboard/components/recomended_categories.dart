@@ -22,15 +22,24 @@ class RecomendedCategories extends StatelessWidget {
                         builder: (BuildContext context) => const GoogleMaps()));
               },
               child: const Text("Location")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => MapView(),
-                    ));
-              },
-              child: const Text("Admin Map view")),
+          // ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (BuildContext context) => MapView(),
+          //           ));
+          //     },
+              // child: const Text("Pick location")),
+              //  ElevatedButton(
+              // onPressed: () {
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (BuildContext context) => MapView(),
+              //       ));
+              // },
+              // child: const Text("Admin Map view")),
           // RecomendedDrugs(
           //     image: "assets/images/pills2.png", title: "Pills", press: () {}),
           // RecomendedDrugs(
