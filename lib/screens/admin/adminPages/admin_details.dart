@@ -1,3 +1,4 @@
+import 'package:brianpharmacy/screens/admin/adminPages/admin_location.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,22 @@ class _AdminDetailsState extends State<AdminDetails> {
   TextEditingController controllerLocation = TextEditingController();
   TextEditingController controllerDrugs = TextEditingController();
   final controllerProfessional = TextEditingController();
+  final _locationController = TextEditingController();
+
+  void _chooseLocation() async {
+    final pickedLocation = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoationPicker(),
+      ),
+    );
+    if (pickedLocation != null) {
+      setState(() {
+        _locationController.text =
+            ' ${pickedLocation.latitude},${pickedLocation.longitude}';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,18 +78,9 @@ class _AdminDetailsState extends State<AdminDetails> {
           const SizedBox(
             height: 24,
           ),
-          TextFormField(
-            controller: controllerLocation,
-            decoration: const InputDecoration(
-              hintText:
-                  'Latitude and Longitude separated by commas respectively',
-            ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter Latitude and Longitude';
-              }
-              return null;
-            },
+          ElevatedButton(
+            onPressed: _chooseLocation,
+            child: const Text('Choose Location'),
           ),
           const SizedBox(
             height: 24,
@@ -94,9 +102,9 @@ class _AdminDetailsState extends State<AdminDetails> {
           ),
           ElevatedButton(
             onPressed: () {
-              // To get the array of items:
               List<String> drugs = controllerDrugs.text.split(',');
-              List<String> location = controllerLocation.text.split(',');
+              List<String> location = _locationController.text.split(',');
+
               final user = User(
                 name: controllerName.text,
                 location: location,

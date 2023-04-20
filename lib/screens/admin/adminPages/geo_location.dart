@@ -9,16 +9,20 @@ import 'dart:math' show cos, sqrt, asin;
 
 class MapView extends StatefulWidget {
 
+  final Map<String, dynamic> data;
+  const MapView({super.key, required this.data});
+
 
   @override
   _MapViewState createState() => _MapViewState();
 }
 
 class _MapViewState extends State<MapView> {
-  CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
+  final CameraPosition _initialLocation =
+      const CameraPosition(target: LatLng(0.0, 0.0));
   late GoogleMapController mapController;
 
-   late Position _currentPosition;
+  late Position _currentPosition;
   String _currentAddress = '';
 
   final startAddressController = TextEditingController();
@@ -49,7 +53,7 @@ class _MapViewState extends State<MapView> {
     Widget? suffixIcon,
     required Function(String) locationCallback,
   }) {
-    return Container(
+    return SizedBox(
       width: width * 0.8,
       child: TextField(
         onChanged: (value) {
@@ -57,14 +61,14 @@ class _MapViewState extends State<MapView> {
         },
         controller: controller,
         focusNode: focusNode,
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           labelText: label,
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(10.0),
             ),
             borderSide: BorderSide(
@@ -73,7 +77,7 @@ class _MapViewState extends State<MapView> {
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(10.0),
             ),
             borderSide: BorderSide(
@@ -81,7 +85,7 @@ class _MapViewState extends State<MapView> {
               width: 2,
             ),
           ),
-          contentPadding: EdgeInsets.all(15),
+          contentPadding: const EdgeInsets.all(15),
           hintText: hint,
         ),
       ),
@@ -90,7 +94,7 @@ class _MapViewState extends State<MapView> {
 
   // Method for retrieving the current location
   _getCurrentLocation() async {
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) async {
       setState(() {
         _currentPosition = position;
@@ -285,15 +289,15 @@ class _MapViewState extends State<MapView> {
     );
 
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
+      }
     }
 
-    PolylineId id = PolylineId('poly');
+    PolylineId id = const PolylineId('poly');
     Polyline polyline = Polyline(
       polylineId: id,
-      color: Colors.red,
+      color: const Color.fromARGB(255, 76, 244, 54),
       points: polylineCoordinates,
       width: 3,
     );
@@ -310,7 +314,7 @@ class _MapViewState extends State<MapView> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       height: height,
       width: width,
       child: Scaffold(
@@ -319,66 +323,54 @@ class _MapViewState extends State<MapView> {
           children: <Widget>[
             // Map View
             GoogleMap(
-              markers: Set<Marker>.from(markers),
-              initialCameraPosition: _initialLocation,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: false,
-              mapType: MapType.normal,
-              zoomGesturesEnabled: true,
-              zoomControlsEnabled: false,
-              polylines: Set<Polyline>.of(polylines.values),
-              onMapCreated: (GoogleMapController controller) {
-                mapController = controller;
-              },
-            ),
+                markers: Set<Marker>.from(markers),
+                initialCameraPosition: _initialLocation,
+                myLocationEnabled: true,
+                myLocationButtonEnabled: false,
+                mapType: MapType.normal,
+                zoomGesturesEnabled: true,
+                zoomControlsEnabled: false,
+                polylines: Set<Polyline>.of(polylines.values),
+                onMapCreated: (GoogleMapController controller) {
+                  mapController = controller;
+                }),
             // Show zoom buttons
             SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ClipOval(
-                      child: Material(
-                        color: Colors.blue.shade100, // button color
-                        child: InkWell(
-                          splashColor: Colors.blue, // inkwell color
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: Icon(Icons.add),
-                          ),
-                          onTap: () {
-                            mapController.animateCamera(
-                              CameraUpdate.zoomIn(),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    ClipOval(
-                      child: Material(
-                        color: Colors.blue.shade100, // button color
-                        child: InkWell(
-                          splashColor: Colors.blue, // inkwell color
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: Icon(Icons.remove),
-                          ),
-                          onTap: () {
-                            mapController.animateCamera(
-                              CameraUpdate.zoomOut(),
-                            );
-                          },
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          ClipOval(
+                              child: Material(
+                                  color: Colors.blue.shade100, // button color
+                                  child: InkWell(
+                                      splashColor: Colors.blue, // inkwell color
+                                      child: const SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: Icon(Icons.add),
+                                      ),
+                                      onTap: () {
+                                        mapController.animateCamera(
+                                            CameraUpdate.zoomIn());
+                                      }))),
+                          const SizedBox(height: 20),
+                          ClipOval(
+                              child: Material(
+                                  color: Colors.blue.shade100, // button color
+                                  child: InkWell(
+                                      splashColor: Colors.blue, // inkwell color
+                                      child: const SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: Icon(Icons.remove),
+                                      ),
+                                      onTap: () {
+                                        mapController.animateCamera(
+                                            CameraUpdate.zoomOut());
+                                      })))
+                        ]))),
             // Show the place input fields & button for
             // showing the route
             SafeArea(
@@ -387,7 +379,7 @@ class _MapViewState extends State<MapView> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white70,
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
@@ -399,17 +391,17 @@ class _MapViewState extends State<MapView> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Text(
+                          const Text(
                             'Places',
                             style: TextStyle(fontSize: 20.0),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           _textField(
                               label: 'Start',
                               hint: 'Choose starting point',
-                              prefixIcon: Icon(Icons.looks_one),
+                              prefixIcon: const Icon(Icons.looks_one),
                               suffixIcon: IconButton(
-                                icon: Icon(Icons.my_location),
+                                icon: const Icon(Icons.my_location),
                                 onPressed: () {
                                   startAddressController.text = _currentAddress;
                                   _startAddress = _currentAddress;
@@ -423,11 +415,11 @@ class _MapViewState extends State<MapView> {
                                   _startAddress = value;
                                 });
                               }),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           _textField(
                               label: 'Destination',
                               hint: 'Choose destination',
-                              prefixIcon: Icon(Icons.looks_two),
+                              prefixIcon: const Icon(Icons.looks_two),
                               controller: destinationAddressController,
                               focusNode: desrinationAddressFocusNode,
                               width: width,
@@ -436,18 +428,15 @@ class _MapViewState extends State<MapView> {
                                   _destinationAddress = value;
                                 });
                               }),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Visibility(
                             visible: _placeDistance == null ? false : true,
                             child: Text(
-                              'DISTANCE: $_placeDistance km',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              'Distance: $_placeDistance km',
+                              style: const TextStyle(fontSize: 24),
                             ),
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           ElevatedButton(
                             onPressed: (_startAddress != '' &&
                                     _destinationAddress != '')
@@ -456,32 +445,33 @@ class _MapViewState extends State<MapView> {
                                     desrinationAddressFocusNode.unfocus();
                                     setState(() {
                                       if (markers.isNotEmpty) markers.clear();
-                                      if (polylines.isNotEmpty)
+                                      if (polylines.isNotEmpty) {
                                         polylines.clear();
-                                      if (polylineCoordinates.isNotEmpty)
+                                      }
+                                      if (polylineCoordinates.isNotEmpty) {
                                         polylineCoordinates.clear();
+                                      }
                                       _placeDistance = null;
                                     });
 
-                                    _calculateDistance().then((isCalculated) {
-                                      if (isCalculated) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                                'Distance Calculated Sucessfully'),
-                                          ),
-                                        );
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                                'Error Calculating Distance'),
-                                          ),
-                                        );
-                                      }
-                                    });
+                                    _calculateDistance().then(
+                                      (isCalculated) {
+                                        if (isCalculated) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                  'Distance Calculated Sucessfully'),
+                                            ),
+                                          );
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                                  content: Text(
+                                                      'Error Calculating Distance')));
+                                        }
+                                      },
+                                    );
                                   }
                                 : null,
                             // color: Colors.red,
@@ -492,7 +482,7 @@ class _MapViewState extends State<MapView> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 'Show Route'.toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.0,
                                 ),
@@ -514,10 +504,10 @@ class _MapViewState extends State<MapView> {
                   padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
                   child: ClipOval(
                     child: Material(
-                      color: Colors.orange.shade100, // button color
+                      color: const Color.fromARGB(255, 178, 220, 255), // button color
                       child: InkWell(
-                        splashColor: Colors.orange, // inkwell color
-                        child: SizedBox(
+                        splashColor: const Color.fromARGB(255, 0, 255, 221), // inkwell color
+                        child: const SizedBox(
                           width: 56,
                           height: 56,
                           child: Icon(Icons.my_location),

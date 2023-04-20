@@ -1,4 +1,5 @@
 import 'package:brianpharmacy/constraints.dart';
+import 'package:brianpharmacy/screens/admin/adminPages/geo_location.dart';
 import 'package:brianpharmacy/screens/dashboard/components/geolocation/geolocation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -194,13 +195,13 @@ class _HeaderWithSearchBoxState extends State<HeaderWithSearchBox> {
                                     TextSpan(
                                       children: [
                                         const TextSpan(
-                                          text: 'Longitude ',
+                                          text: 'Latitude: ',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
                                         TextSpan(text: data['location'].first),
                                         const TextSpan(
-                                          text: 'Latitude ',
+                                          text: 'Longitude: ',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
