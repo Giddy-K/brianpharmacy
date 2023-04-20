@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 // ignore: camel_case_types
 class geolocationpage extends StatefulWidget {
@@ -57,16 +56,6 @@ class _geolocationpageState extends State<geolocationpage> {
     });
   }
 
-  // //open the current location in the GoogleMap
-  // Future<void> _openMap(String lat, String long) async {
-  //   String googleURL =
-  //       'https://www.google.com/maps/search/?api=1@query=$lat,$long';
-  //   await canLaunchUrlString(googleURL)
-  //       ? await launchUrlString(googleURL)
-  //       : throw 'could not  launch $googleURL';
-  // }
-  
-
 //open the current location and destination location in the GoogleMap with a route
   Future<void> _openMap(String lat, String long) async {
     Position currentPosition = await _getCurrentLocation();
@@ -76,12 +65,6 @@ class _geolocationpageState extends State<geolocationpage> {
     LatLng sourceLatLng =
         LatLng(currentPosition.latitude, currentPosition.longitude);
     LatLng destinationLatLng = LatLng(double.parse(lat), double.parse(long));
-
-    String googleURL =
-        'https://www.google.com/maps/dir/?api=1&origin=$sourceLat,$sourceLong&destination=$lat,$long';
-    await canLaunchUrlString(googleURL)
-        ? await launchUrlString(googleURL)
-        : throw 'could not  launch $googleURL';
 
     setState(() {
       _markers.clear();

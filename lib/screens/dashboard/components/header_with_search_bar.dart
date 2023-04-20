@@ -108,7 +108,7 @@ class _HeaderWithSearchBoxState extends State<HeaderWithSearchBox> {
               child: Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                height: 80,
+                height: 100,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
