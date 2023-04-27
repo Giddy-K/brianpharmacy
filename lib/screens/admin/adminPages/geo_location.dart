@@ -261,7 +261,7 @@ class _MapViewState extends State<MapView> {
     }
     return false;
   }
-
+// Harvesine formula
   // Formula for calculating distance between two coordinates
   // https://stackoverflow.com/a/54138876/11910277
   double _coordinateDistance(lat1, lon1, lat2, lon2) {

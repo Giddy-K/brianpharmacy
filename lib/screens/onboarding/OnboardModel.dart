@@ -36,14 +36,14 @@ List<OnboardModel> getSlides() {
 
   //item 1
   sliderModel.setImage("assets/images/drug.png");
-  sliderModel.setTitle("Your Title");
-  sliderModel.setDescription("Your description");
+  sliderModel.setTitle("the pharmacist page");
+  sliderModel.setDescription("");
   slides.add(sliderModel);
 
   sliderModel = OnboardModel();
   //itme 2
   sliderModel.setImage("assets/images/pills.png");
-  sliderModel.setTitle("Your Title");
+  sliderModel.setTitle("user page");
   sliderModel.setDescription("Your description");
   slides.add(sliderModel);
 

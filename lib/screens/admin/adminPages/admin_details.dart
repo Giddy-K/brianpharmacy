@@ -13,7 +13,8 @@ class AdminDetails extends StatefulWidget {
 
 class _AdminDetailsState extends State<AdminDetails> {
   bool selected = false;
-
+  late int _integerprice;
+  
   List<String> text = [];
   final controllerName = TextEditingController();
   final controllerPhone = TextEditingController();
@@ -21,6 +22,8 @@ class _AdminDetailsState extends State<AdminDetails> {
   TextEditingController controllerDrugs = TextEditingController();
   final controllerProfessional = TextEditingController();
   final _locationController = TextEditingController();
+  final controllerPrice=TextEditingController();
+
 
   void _chooseLocation() async {
     final pickedLocation = await Navigator.push(
@@ -35,6 +38,7 @@ class _AdminDetailsState extends State<AdminDetails> {
             ' ${pickedLocation.latitude},${pickedLocation.longitude}';
       });
     }
+
   }
 
   @override
@@ -97,6 +101,22 @@ class _AdminDetailsState extends State<AdminDetails> {
               return null;
             },
           ),
+          TextFormField(
+          decoration:const InputDecoration(labelText:'price'),
+          keyboardType: TextInputType.number, 
+          validator: (value) {
+            if (value! .isEmpty) {
+              return 'please enter the drug price';
+            }
+            if (int.tryParse(value)==null){
+              return 'please enter a valid price';
+            }
+             return null;
+          },
+          onSaved: (price) {
+           _integerprice= int.parse(price!);
+          },
+          ),
           const SizedBox(
             height: 24,
           ),
@@ -111,6 +131,7 @@ class _AdminDetailsState extends State<AdminDetails> {
                 profession: controllerProfessional.text,
                 mobileNumber: controllerPhone.text,
                 drugs: drugs,
+               // price: controllerPrice.text
               );
 
               createUser(user);

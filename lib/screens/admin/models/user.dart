@@ -5,14 +5,17 @@ class User {
   List drugs = [];
   final String profession;
   final String mobileNumber;
+  //final String price;
+  
 
-  User({
+  User( {
     this.id = '',
     required this.name,
     required this.drugs,
     required this.location,
     required this.profession,
     required this.mobileNumber,
+   // required this.price,
   });
 
   Map<String, dynamic> toJson() => {
@@ -30,5 +33,7 @@ class User {
         location: json['location'],
         profession: json['profession'],
         mobileNumber: json['mobileNumber'],
+       // price: json['price'],
+       
       );
 }
