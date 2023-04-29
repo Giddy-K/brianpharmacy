@@ -1,5 +1,6 @@
 import 'package:brianpharmacy/constraints.dart';
 import 'package:brianpharmacy/screens/admin/adminPages/geo_location.dart';
+import 'package:brianpharmacy/screens/admin/models/drug.dart';
 import 'package:brianpharmacy/screens/dashboard/components/geolocation/geolocation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -132,17 +133,26 @@ class _HeaderWithSearchBoxState extends State<HeaderWithSearchBox> {
                           child: CircularProgressIndicator(),
                         );
                       }
-
-                      final query = drug.toLowerCase();
-
+                      String query = '';
                       final filteredDocs = snapshots.data!.docs.where((doc) {
                         final data = doc.data() as Map<String, dynamic>;
-                        final drugs = List<String>.from(data['drugs']);
-                        final matches = drugs
-                            .any((drug) => drug.toLowerCase().contains(query));
+                        final drugs = List<Drug>.from(
+                            data['drugs'].map((d) => Drug.fromJson(d)));
+                        final matches = drugs.any(
+                            (drug) => drug.name.toLowerCase().contains(query));
                         return matches;
                       }).toList();
 
+                      for (final doc in filteredDocs) {
+                        final data = doc.data() as Map<String, dynamic>;
+                        final drugs = List<Drug>.from(
+                            data['drugs'].map((d) => Drug.fromJson(d)));
+                        final matchedDrugs = drugs.where(
+                            (drug) => drug.name.toLowerCase().contains(query));
+                        for (final drug in matchedDrugs) {
+                          print(drug.name);
+                        }
+                      }
                       return ListView.builder(
                         itemCount: filteredDocs.length,
                         itemBuilder: (context, index) {
@@ -195,17 +205,24 @@ class _HeaderWithSearchBoxState extends State<HeaderWithSearchBox> {
                                     TextSpan(
                                       children: [
                                         const TextSpan(
-                                          text: 'Latitude: ',
+                                          text: 'Drug: ',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                        TextSpan(text: data['location'].first),
+                                        TextSpan(
+                                          text: data['drugs'][index]['name'],
+                                        ),
                                         const TextSpan(
-                                          text: 'Longitude: ',
+                                          text: ' Price: ',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                        TextSpan(text: data['location'].last),
+                                        TextSpan(
+                                          text: data['drugs'][index]['price']
+                                              .toString(),
+                                        ),
                                       ],
                                     ),
                                   ),

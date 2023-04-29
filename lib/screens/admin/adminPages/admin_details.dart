@@ -1,11 +1,12 @@
 import 'package:brianpharmacy/screens/admin/adminPages/admin_location.dart';
+import 'package:brianpharmacy/screens/admin/models/drug.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
 
 class AdminDetails extends StatefulWidget {
-  const AdminDetails({super.key});
+  const AdminDetails({Key? key}) : super(key: key);
 
   @override
   State<AdminDetails> createState() => _AdminDetailsState();
@@ -17,10 +18,12 @@ class _AdminDetailsState extends State<AdminDetails> {
   List<String> text = [];
   final controllerName = TextEditingController();
   final controllerPhone = TextEditingController();
-  TextEditingController controllerLocation = TextEditingController();
-  TextEditingController controllerDrugs = TextEditingController();
+  final controllerLocation = TextEditingController();
   final controllerProfessional = TextEditingController();
   final _locationController = TextEditingController();
+  final controllerDrugs = TextEditingController();
+
+  List<Drug> drugs = [];
 
   void _chooseLocation() async {
     final pickedLocation = await Navigator.push(
@@ -65,7 +68,7 @@ class _AdminDetailsState extends State<AdminDetails> {
           ),
           TextField(
             controller: controllerProfessional,
-            decoration: decoration('Proffession'),
+            decoration: decoration('Profession'),
           ),
           const SizedBox(
             height: 24,
@@ -102,7 +105,15 @@ class _AdminDetailsState extends State<AdminDetails> {
           ),
           ElevatedButton(
             onPressed: () {
-              List<String> drugs = controllerDrugs.text.split(',');
+              List<String> drugList = controllerDrugs.text.split(',');
+              drugs.clear();
+              for (var drug in drugList) {
+                var parts = drug.split(':');
+                var name = parts[0].trim();
+                var price = double.parse(parts[1].trim());
+                drugs.add(Drug(name: name, price: price));
+              }
+
               List<String> location = _locationController.text.split(',');
 
               final user = User(
