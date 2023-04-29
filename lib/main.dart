@@ -2,11 +2,11 @@ import 'package:brianpharmacy/constraints.dart';
 import 'package:brianpharmacy/screens/admin/adminAuth/auth_page.dart';
 import 'package:brianpharmacy/screens/dashboard/home.dart';
 import 'package:brianpharmacy/screens/admin/adminPages/pharmacist.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart'; 
+//import 'package:flutter/services.dart'; 
 
 Future<void> main()  async {
  // WidgetsFlutterBinding.ensureInitialized();
