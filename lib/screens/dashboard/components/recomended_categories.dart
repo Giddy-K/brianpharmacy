@@ -1,5 +1,4 @@
 import 'package:brianpharmacy/constraints.dart';
-import 'package:brianpharmacy/screens/admin/adminPages/geo_location.dart';
 import 'package:brianpharmacy/screens/dashboard/components/geolocation/googleMaps.dart';
 import 'package:flutter/material.dart';
 

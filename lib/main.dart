@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:flutter/services.dart'; 
 
 Future<void> main()  async {
- // WidgetsFlutterBinding.ensureInitialized();
+ WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }

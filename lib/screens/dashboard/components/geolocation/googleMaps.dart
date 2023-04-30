@@ -121,10 +121,10 @@ class _GoogleMapsState extends State<GoogleMaps> {
                               offset: Offset(0.7, 0.7))
                         ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(12.0),
                         child: Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.search,
                               color: Colors.lightBlueAccent,
@@ -140,15 +140,15 @@ class _GoogleMapsState extends State<GoogleMaps> {
                     const SizedBox(
                       height: 24.0,
                     ),
-                    Row(
+                    const Row(
                       children: [
-                        const Icon(Icons.home, color: Colors.grey),
-                        const SizedBox(
+                        Icon(Icons.home, color: Colors.grey),
+                        SizedBox(
                           height: 24.0,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text("Add location"),
                             SizedBox(
                               height: 4.0,
@@ -169,15 +169,15 @@ class _GoogleMapsState extends State<GoogleMaps> {
                     const SizedBox(
                       height: 16.0,
                     ),
-                    Row(
+                    const Row(
                       children: [
-                        const Icon(Icons.work, color: Colors.grey),
-                        const SizedBox(
+                        Icon(Icons.work, color: Colors.grey),
+                        SizedBox(
                           height: 24.0,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text("Add location"),
                             SizedBox(
                               height: 4.0,

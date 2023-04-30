@@ -13,7 +13,6 @@ class AdminDetails extends StatefulWidget {
 
 class _AdminDetailsState extends State<AdminDetails> {
   bool selected = false;
-  late int _integerprice;
   
   List<String> text = [];
   final controllerName = TextEditingController();
@@ -114,7 +113,6 @@ class _AdminDetailsState extends State<AdminDetails> {
              return null;
           },
           onSaved: (price) {
-           _integerprice= int.parse(price!);
           },
           ),
           const SizedBox(
