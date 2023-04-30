@@ -1,4 +1,6 @@
 import 'package:brianpharmacy/constraints.dart';
+import 'package:brianpharmacy/screens/admin/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsList extends StatelessWidget {
@@ -8,31 +10,58 @@ class DoctorsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          DoctorsTile(
-            image: "assets/images/profile.png",
-            title: "Marcus James",
-            subtitle: "Orthodontist",
-            press: () {},
-          ),
-          DoctorsTile(
-            image: "assets/images/profile.png",
-            title: "Juliet Akoth",
-            subtitle: "Psychiatrists",
-            press: () {},
-          ),
-          DoctorsTile(
-            image: "assets/images/profile.png",
-            title: "Joe Doe",
-            subtitle: "Neurologists",
-            press: () {},
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        StreamBuilder<List<User>>(
+          stream: readUsers(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              final users = snapshot.error;
+              print(users);
+              return const Text('Somethig went wrong');
+            } else if (snapshot.hasData) {
+              final users = snapshot.data!;
+              return ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                children: users.map(buildUser).toList(),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
+      ],
     );
   }
+
+  Widget buildUser(User user) => ListTile(
+        isThreeLine: true,
+        leading: Text(user.profession),
+        title: Text(user.name),
+        subtitle: Text.rich(
+          TextSpan(
+            children: [
+              const TextSpan(
+                  text: 'Latitude: ',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: user.location.first),
+              const TextSpan(
+                  text: 'Longitude: ',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: user.location.last),
+            ],
+          ),
+        ),
+      );
+
+  Stream<List<User>> readUsers() => FirebaseFirestore.instance
+      .collection('admin')
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
 }
 
 class DoctorsTile extends StatelessWidget {

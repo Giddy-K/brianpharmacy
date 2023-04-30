@@ -1,10 +1,9 @@
 import 'package:brianpharmacy/components/nav_bar.dart';
 import 'package:brianpharmacy/constraints.dart';
 import 'package:brianpharmacy/main.dart';
-import 'package:brianpharmacy/screens/adminAuth/auth_page.dart';
-import 'package:brianpharmacy/screens/adminAuth/login.dart';
 import 'package:brianpharmacy/screens/dashboard/components/body.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,7 +31,7 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 // Update the state of the app.
                 // ...
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) => const MainPage(),

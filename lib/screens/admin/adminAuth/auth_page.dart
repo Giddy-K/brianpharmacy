@@ -1,5 +1,5 @@
-import 'package:brianpharmacy/screens/adminAuth/login.dart';
-import 'package:brianpharmacy/screens/adminAuth/signup.dart';
+import 'package:brianpharmacy/screens/admin/adminAuth/login.dart';
+import 'package:brianpharmacy/screens/admin/adminAuth/signup.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {

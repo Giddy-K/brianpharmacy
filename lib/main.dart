@@ -1,19 +1,16 @@
 import 'package:brianpharmacy/constraints.dart';
-import 'package:brianpharmacy/screens/adminAuth/auth_page.dart';
-import 'package:brianpharmacy/screens/adminAuth/login.dart';
-import 'package:brianpharmacy/screens/adminAuth/signup.dart';
+import 'package:brianpharmacy/screens/admin/adminAuth/auth_page.dart';
 import 'package:brianpharmacy/screens/dashboard/home.dart';
-import 'package:brianpharmacy/screens/onboarding/onboarding.dart';
-import 'package:brianpharmacy/screens/pharmacist/pharmacist.dart';
+import 'package:brianpharmacy/screens/admin/adminPages/pharmacist.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:auth_email/auth_email.dart';
+//import 'package:flutter/services.dart'; 
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> main()  async {
+ WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(const MyApp());
 }
 
