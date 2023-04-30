@@ -33,10 +33,12 @@ class _AdminDetailsState extends State<AdminDetails> {
       ),
     );
     if (pickedLocation != null) {
-      setState(() {
-        _locationController.text =
-            ' ${pickedLocation.latitude},${pickedLocation.longitude}';
-      });
+      setState(
+        () {
+          _locationController.text =
+              ' ${pickedLocation.latitude},${pickedLocation.longitude}';
+        },
+      );
     }
   }
 
