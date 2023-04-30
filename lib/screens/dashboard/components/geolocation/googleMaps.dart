@@ -32,6 +32,9 @@ class _GoogleMapsState extends State<GoogleMaps> {
 
     CameraPosition cameraPosition =
         CameraPosition(target: latLngPosition, zoom: 14);
+
+    // wait for the GoogleMapController to be initialized before animating the camera
+    await _controllerGoogleMap.future;
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
