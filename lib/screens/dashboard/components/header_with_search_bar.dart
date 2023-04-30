@@ -134,14 +134,16 @@ class _HeaderWithSearchBoxState extends State<HeaderWithSearchBox> {
                         );
                       }
                       String query = '';
-                      final filteredDocs = snapshots.data!.docs.where((doc) {
-                        final data = doc.data() as Map<String, dynamic>;
-                        final drugs = List<Drug>.from(
-                            data['drugs'].map((d) => Drug.fromJson(d)));
-                        final matches = drugs.any(
-                            (drug) => drug.name.toLowerCase().contains(query));
-                        return matches;
-                      }).toList();
+                      final filteredDocs = snapshots.data!.docs.where(
+                        (doc) {
+                          final data = doc.data() as Map<String, dynamic>;
+                          final drugs = List<Drug>.from(
+                              data['drugs'].map((d) => Drug.fromJson(d)));
+                          final matches = drugs.any((drug) =>
+                              drug.name.toLowerCase().contains(query));
+                          return matches;
+                        },
+                      ).toList();
 
                       for (final doc in filteredDocs) {
                         final data = doc.data() as Map<String, dynamic>;
