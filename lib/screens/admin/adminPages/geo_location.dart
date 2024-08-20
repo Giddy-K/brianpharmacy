@@ -8,8 +8,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:math' show cos, sqrt, asin;
 
 class MapView extends StatefulWidget {
+
   final Map<String, dynamic> data;
   const MapView({super.key, required this.data});
+
 
   @override
   _MapViewState createState() => _MapViewState();
@@ -259,7 +261,7 @@ class _MapViewState extends State<MapView> {
     }
     return false;
   }
-
+// Harvesine formula
   // Formula for calculating distance between two coordinates
   // https://stackoverflow.com/a/54138876/11910277
   double _coordinateDistance(lat1, lon1, lat2, lon2) {

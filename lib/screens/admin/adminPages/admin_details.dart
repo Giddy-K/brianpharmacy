@@ -14,16 +14,13 @@ class AdminDetails extends StatefulWidget {
 
 class _AdminDetailsState extends State<AdminDetails> {
   bool selected = false;
-
+  
   List<String> text = [];
   final controllerName = TextEditingController();
   final controllerPhone = TextEditingController();
   final controllerLocation = TextEditingController();
   final controllerProfessional = TextEditingController();
   final _locationController = TextEditingController();
-  final controllerDrugs = TextEditingController();
-
-  List<Drug> drugs = [];
 
   void _chooseLocation() async {
     final pickedLocation = await Navigator.push(
@@ -40,6 +37,7 @@ class _AdminDetailsState extends State<AdminDetails> {
         },
       );
     }
+
   }
 
   @override
@@ -102,6 +100,21 @@ class _AdminDetailsState extends State<AdminDetails> {
               return null;
             },
           ),
+          TextFormField(
+          decoration:const InputDecoration(labelText:'price'),
+          keyboardType: TextInputType.number, 
+          validator: (value) {
+            if (value! .isEmpty) {
+              return 'please enter the drug price';
+            }
+            if (int.tryParse(value)==null){
+              return 'please enter a valid price';
+            }
+             return null;
+          },
+          onSaved: (price) {
+          },
+          ),
           const SizedBox(
             height: 24,
           ),
@@ -124,6 +137,7 @@ class _AdminDetailsState extends State<AdminDetails> {
                 profession: controllerProfessional.text,
                 mobileNumber: controllerPhone.text,
                 drugs: drugs,
+               // price: controllerPrice.text
               );
 
               createUser(user);

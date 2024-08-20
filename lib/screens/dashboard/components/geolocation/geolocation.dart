@@ -112,15 +112,24 @@ class _GeolocationPageState extends State<GeolocationPage> {
     });
   }
 
-  Future<double> _calculateDistance(
-      LatLng sourceLatLng, LatLng destinationLatLng) async {
-    double distanceInMeters = Geolocator.distanceBetween(
-        sourceLatLng.latitude,
-        sourceLatLng.longitude,
-        destinationLatLng.latitude,
-        destinationLatLng.longitude);
-    double distanceInKm = distanceInMeters / 1000;
-    return distanceInKm;
+  GoogleMapController? _controller;
+  Set<Marker> _markers = {};
+  Set<Polyline> _polylines = {};
+
+  void _addPolyline(LatLng source, LatLng destination) {
+    _polylines.add(Polyline(
+      polylineId: const PolylineId('route'),
+      visible: true,
+      points: [source, destination],
+      width: 4,
+      color: Colors.blue,
+      startCap: Cap.roundCap,
+      endCap: Cap.roundCap,
+    ));
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller = controller;
   }
 
   @override
